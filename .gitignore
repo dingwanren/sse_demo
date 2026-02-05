@@ -1,0 +1,9 @@
+node_modules
+/dist
+dist/
+/dist/
+lib/
+build/
+.next/
+out/
+.git/
