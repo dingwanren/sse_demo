@@ -15,11 +15,12 @@ function sendMessage(question) {
 
   currentEventSource.addEventListener("message", (event) => {
     console.log("收到数据块:", event.data);
+    addServerMsg(event.data);
   });
 
   currentEventSource.addEventListener("close", () => {
     console.log("回答结束，连接将被后端关闭。");
-    currentEventSource.close();// 不关闭会自动重连,还报错
+    currentEventSource.close(); // 不关闭会自动重连,还报错
     currentEventSource = null;
   });
 
@@ -47,6 +48,36 @@ function sendMessage(question) {
   };
 }
 
+function createMsgWithClass(textContent, className) {
+  const msgItem = document.createElement("div");
+  msgItem.classList.add("msg-item");
+
+  const el = document.createElement("div");
+  if (textContent) {
+    el.textContent = textContent;
+  }
+  if (className) {
+    el.classList.add(className);
+  }
+  msgItem.append(el);
+  return msgItem;
+}
+
+function addUserMsg(msg) {
+  msgList.append(createMsgWithClass(msg, "user-role"));
+}
+function addServerMsg(msg) {
+  msgList.append(createMsgWithClass(msg, "server-role"));
+}
 sendBtn.addEventListener("click", () => {
-  sendMessage("你好?  mk");
+  const question = input.value;
+
+  if (question.trim() === "") {
+    alert("请输入问题");
+    return;
+  }
+
+  input.value = "";
+  addUserMsg(question);
+  sendMessage(question);
 });

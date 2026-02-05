@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>流式输出</title>
+
+  <style>
+    .msg-list {
+      width: 400px;
+      height: 400px;
+      border: 1px solid red;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .msg-list .msg-item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .msg-item .user-role {
+      align-self: end;
+    }
+
+    .msg-item .server-role {
+      align-self: start;
+    }
+  </style>
 </head>
+
 <body>
   <div class="msg-list"></div>
   <input type="text" class="msg-input">
@@ -12,4 +38,5 @@
 
   <script src="./index.js"></script>
 </body>
+
 </html>
